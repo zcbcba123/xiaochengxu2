@@ -1,5 +1,32 @@
 {
   "pages": [
-    "page/home/home"
-  ]
+    "page/home/home",
+    "page/about/about"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ff5777",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "长能小程序",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "selectedColor": "#ff5777",
+    "list": [
+      {
+        "pagePath": "page/home/home",
+        "text": "首页",
+        "iconPath": "assets/home.png",
+        "selectedIconPath": "assets/home1.png"
+      },
+      {
+        "pagePath": "page/about/about",
+        "text": "分类",
+        "iconPath": "assets/fenlei.png",
+        "selectedIconPath": "assets/fenlei1.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap59.json"
 }

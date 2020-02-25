@@ -1,66 +1,59 @@
 // page/home/home.js
+const app=getApp()
+console.log(app.globalData.name)
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
+  onLoad(){
+    //或者
+    //const _this=this;
+    //需要在控制台配置
+    wx.request({
+      url: 'http://gank.io/api/day/history',
+      // url: 'http://www.baidu.com',
+      // success:function(res){ //这样写不行，会找不到this,要用es6的写法
+      //当然，如果非要这么写就要用到_this
+      success: (res) => {
+        console.log(res)
+        const results = res.data.results;
+        // console.log("loadres" + results)
+        //_this.setData
+        this.setData({
+          list: results
+        })
+        // console.log("loadres" + results)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  data:{
+    name:'zs',
+    age:18,
+    students:[
+      {id:110,name:'zs2',age:11},
+      { id: 111, name: 'zs23', age: 13}
+    ],
+    counter:0,
+    list:[]
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  handleBtnClick(){
+    //界面不刷新
+    //this.data.counter+=1
+    this.setData({
+      counter:this.data.counter+1
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  handleBtnClick2() {
+    //界面不刷新
+    //this.data.counter+=1
+    this.setData({
+      counter: this.data.counter-1
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onPageScroll(obj){
+    // console.log(obj)
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onReachBottom(){
+    //console.log('滚到底了')
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  onPullDownRefresh(){
+    console.log('下拉刷新')
   }
 })
