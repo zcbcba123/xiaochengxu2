@@ -1,1 +1,22 @@
-/* page/about/about.wxss */
+/* page/home/home.wxss */
+input{
+  border: 1px solid red;
+  margin:10px 30px;
+}
+.container1{
+  background: purple;
+  white-space: nowrap;
+}
+.item1{
+  width: 100px;
+  height: 100px;
+  background:red;
+  margin:10px;
+  display: inline-block;
+}
+.box{
+  font-size: 64rpx;
+}
+.active{
+  color: red;
+}

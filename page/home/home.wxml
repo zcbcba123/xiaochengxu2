@@ -1,15 +1,33 @@
-<!--page/home/home.wxml-->
-<!--小程序数据绑定-->
-<view>hello{{name}}</view>
-<view>年龄:{{age+3}}</view>
+<swiper class='swiper' circular autoplay interval="3000" duration="300" indicator-dots indicator-active-color="#ff5777">
+  <block wx:for="{{banners}}" wx:key="{{index}}">
+    <swiper-item class="swiper-item">
+      <image src="{{item.image}}" mode="widthFix"/>
+    </swiper-item>
+  </block>
+</swiper>
 
-<!--列表-->
-<view>年龄:{{students[0].name}}</view>
+<!--推荐数据展示-->
+<view class="recommend">
+  <block wx:for="{{recommends}}" wx:key="{{index}}">
+    <view class="recommend-item">
+      <image src="{{item.image}}"/>
+      <view>{{item.title}}</view>
+    </view>
+  </block>
+</view>
 
-<view wx:for="{{students}}">{{item.name}}-{{item.age}}</view>
+<!-- 本周流行 -->
+<view class="popular">
+  <image src="/assets/images/home/recommend_bg.jpg" mode="widthFix"></image>
+</view>
 
-<!--事件监听-->
-<view>当前计数:{{counter}}</view>
-<button size="mini" bindtap='handleBtnClick'>+</button>
-<button size="mini" bindtap='handleBtnClick2'>-</button>
-<view wx:for="{{list}}">{{item}}</view>
+<w-tab-control titles="{{['流行','新款','精选']}}"
+  bind:tabclick="handleTabClick"/>
+
+  <!--5.展示商品数据-->
+  <view class="goods">
+    <block wx:for="{{goods[currentType].list}}">
+      <view>{{item.title}}</view>
+      <view>------</view>
+    </block>
+  </view>

@@ -1,66 +1,83 @@
-// page/about/about.js
+// page/home/home.js
+const app = getApp()
+console.log(app.globalData.name)
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  onLoad() {
+    //或者
+    //const _this=this;
+    //需要在控制台配置
+    wx.request({
+      // url: 'https://gank.io/api/day/history',
+      url: 'https://gank.io/api/add2gank',
+      method: "POST",
+      // url: 'http://www.baidu.com',
+      // success:function(res){ //这样写不行，会找不到this,要用es6的写法
+      //当然，如果非要这么写就要用到_this
+      success: (res) => {
+        // console.log("zs"+res)
+        const results = res.data.results;
+        console.log("loadres" + results)
+        //_this.setData
+        this.setData({
+          list: results
+        })
+        // console.log("loadres" + results)
+      }
+    })
+  },
   data: {
-
+    name: 'zs',
+    age: 18,
+    students: [
+      { id: 110, name: 'zs2', age: 11 },
+      { id: 111, name: 'zs23', age: 13 }
+    ],
+    counter: 0,
+    list: [],
+    imgPath: "",
+    isShow: true
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  handleBtnClick() {
+    //界面不刷新
+    //this.data.counter+=1
+    this.setData({
+      counter: this.data.counter + 1
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  handleBtnClick2() {
+    //界面不刷新
+    //this.data.counter+=1
+    this.setData({
+      counter: this.data.counter - 1
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onPageScroll(obj) {
+    // console.log(obj)
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  onReachBottom() {
+    //console.log('滚到底了')
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  onPullDownRefresh() {
+    console.log('下拉刷新')
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  handleChooseAlbum() {
+    wx.chooseImage({
+      success: (res) => {
+        const path = res.tempFilePaths[0]
+        this.setData({
+          imgPath: path
+        })
+      },
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  handleSwitchColor() {
+    this.setData({
+      isActive: !this.data.isActive
+    })
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleSwitchShow() {
+    this.setData({
+      isShow: !this.data.isShow
+    })
   }
 })

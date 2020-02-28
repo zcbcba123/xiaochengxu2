@@ -1,2 +1,32 @@
-<!--page/about/about.wxml-->
-<text>page/about/about.wxml</text>
+<!--page/home/home.wxml-->
+<!-- 滚动 -->
+<scroll-view class="container1" scroll-x>
+  <view wx:for="{{10}}" class="item1">{{item}}</view>
+</scroll-view>
+<!-- 跳转 -->
+<navigator url='/page/detail/detail'><button>跳转</button></navigator>
+<!--小程序数据绑定-->
+<button size="mini" bindtap="handleSwitchColor">切换颜色</button>
+<button size="mini" bindtap="handleSwitchShow">切换显示</button>
+<view class='box {{isActive ? "active":""}}' wx:if="{{isShow}}">{{age >= 18 ? '成年人':'未成年人'}}</view>
+<!-- wx:elif  wx:else hidden wx:for-->
+<view>hello{{name}}</view>
+<view>年龄:{{age+3}}</view>
+<!-- 就是可以长按复制 -->
+<text selectable>text选中,可复制</text>
+
+<button bindtap="handleChooseAlbum">选中图片</button>
+<image src="{{imgPath}}" lazy-load show-menu-by-longpress/>
+<input type="number" placeholder="请输入"></input>
+
+
+<!--列表-->
+<view>年龄:{{students[0].name}}</view>
+
+<view wx:for="{{students}}">{{item.name}}-{{item.age}}</view>
+
+<!--事件监听-->
+<view>当前计数:{{counter}}</view>
+<button size="mini" bindtap='handleBtnClick' type="warn">+</button>
+<button size="mini" bindtap='handleBtnClick2' type="primary" plain>-</button>
+<view wx:for="{{list}}">{{item}}</view>
